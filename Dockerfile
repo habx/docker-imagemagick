@@ -5,7 +5,7 @@ FROM debian:10-slim
 RUN apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y install \
-      git make gcc pkg-config autoconf && \
+      git make gcc pkg-config autoconf \
       libpng16-16 libpng-dev libjpeg62-turbo libjpeg62-turbo-dev libwebp6 libwebp-dev libgomp1 libwebpmux3 libwebpdemux2 ghostscript && \
     git clone https://github.com/ImageMagick/ImageMagick.git && \
     cd ImageMagick && git checkout ${IM_VERSION} && \
