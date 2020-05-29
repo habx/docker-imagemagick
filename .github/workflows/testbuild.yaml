@@ -10,9 +10,9 @@ jobs:
     steps:
         - uses: actions/checkout@v1
         - name: Build the tagged Docker image
-            run: docker build -t im .
+          run: docker build -t im .
         - name: Test it
-            run: |
+          run: |
               docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.svg /imgs/test-svg.png
               docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg /imgs/test-resize.jpg
               docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg webp:/imgs/test-jpg.webp
