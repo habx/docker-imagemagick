@@ -13,11 +13,11 @@ jobs:
           run: docker build -t im .
         - name: Test it
           run: |
+            docker run --rm -v $(pwd):/imgs im -list format
+            docker run --rm -v $(pwd):/imgs im -list delegate
             docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.svg /imgs/test-svg.png
             docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg /imgs/test-resize.jpg
             docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg webp:/imgs/test-jpg.webp
-            docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg jxr:/imgs/test-jpg.jxr
             docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.png /imgs/test-resize.png
             docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.png webp:/imgs/test-png.webp
-            docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.png jxr:/imgs/test-png.jxr
             docker run --rm -v $(pwd):/imgs im /imgs/test.pdf /imgs/test-pdf.png
