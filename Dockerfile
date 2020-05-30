@@ -1,4 +1,4 @@
-ARG IM_VERSION=7.0.10-5
+ARG IM_VERSION=7.0.10-15
 
 FROM debian:10.4-slim
 
@@ -9,7 +9,6 @@ RUN apt-get -y update && \
       libsm6 librsvg2-2 librsvg2-dev libpng16-16 libpng-dev libjpeg62-turbo libjpeg62-turbo-dev libwebp6 libwebp-dev libgomp1 libwebpmux3 libwebpdemux2 ghostscript && \
     git clone https://github.com/ImageMagick/ImageMagick.git && \
     cd ImageMagick && git checkout ${IM_VERSION} && \
-    cd ImageMagick && \
     ./configure && make && make install && \
     ldconfig /usr/local/lib && \
     apt-get remove --autoremove --purge -y gcc make git autoconf pkg-config librsvg2-dev libpng-dev libjpeg62-turbo-dev libwebp-dev && \
