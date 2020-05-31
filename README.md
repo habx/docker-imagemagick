@@ -9,11 +9,11 @@ Delivers the latest version of the [ImageMagick](https://github.com/ImageMagick/
 By default container will run convert command
 
 ```
-$ docker run -v /your/images:/imgs dpokidov/imagemagick /imgs/sample.png -resize 100x100 /imgs/resized-sample.png
+$ docker run -v /your/images:/imgs habx/imagemagick /imgs/sample.png -resize 100x100 /imgs/resized-sample.png
 ```
 
 You can change entrypoint and pass other IM commands to execute. For instance,
 
 ```
-$ docker run --entrypoint=identify -v /your/images:/imgs dpokidov/imagemagick /imgs/sample.png
+$ docker run --entrypoint=identify -v /your/images:/imgs habx/imagemagick /imgs/sample.png
 ```
