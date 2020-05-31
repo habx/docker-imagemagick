@@ -1,19 +1,18 @@
-ARG IM_VERSION=7.0.10-9
+ARG IM_VERSION=7.0.10-15
 
-FROM fedora:27
+FROM debian:10.4-slim
 
-RUN dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    yum -y update
-
-WORKDIR /opt
-
-RUN yum install -y libtool-ltdl libjpeg libjpeg-devel libpng libpng-devel libtiff libtiff-devel libwebp libwebp-devel LibRaw LibRaw-devel jxrlib git make automake gcc pkgconf ghostscript-core && \
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
+    apt-get -y install \
+      git make gcc pkg-config autoconf \
+      libsm6 librsvg2-2 librsvg2-dev libpng16-16 libpng-dev libjpeg62-turbo libjpeg62-turbo-dev libwebp6 libwebp-dev libgomp1 libwebpmux3 libwebpdemux2 ghostscript && \
     git clone https://github.com/ImageMagick/ImageMagick.git && \
     cd ImageMagick && git checkout ${IM_VERSION} && \
     ./configure && make && make install && \
-    cd ../ && \
-    rm -rf ./ImageMagick && \
-    yum remove -y git make automake gcc libjpeg-devel libpng-devel libtiff-devel libwebp-devel LibRaw-devel && \
-    yum clean all
+    ldconfig /usr/local/lib && \
+    apt-get remove --autoremove --purge -y gcc make git autoconf pkg-config librsvg2-dev libpng-dev libjpeg62-turbo-dev libwebp-dev && \
+    rm -rf /ImageMagick \
+    rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["convert"]
