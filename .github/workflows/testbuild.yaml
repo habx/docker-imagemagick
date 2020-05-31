@@ -15,7 +15,6 @@ jobs:
           run: |
             docker run --rm -v $(pwd):/imgs im -list format
             docker run --rm -v $(pwd):/imgs im -list delegate
-            docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.svg /imgs/test-svg.png
             docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg /imgs/test-resize.jpg
             docker run --rm -v $(pwd):/imgs im -resize 500 /imgs/test.jpg webp:/imgs/test-jpg.webp
             docker run --rm -v $(pwd):/imgs im -resize 100 /imgs/test.png /imgs/test-resize.png
