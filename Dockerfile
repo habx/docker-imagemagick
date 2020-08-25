@@ -1,6 +1,6 @@
 ARG IM_VERSION=7.0.10-15
 
-FROM debian:10.4-slim
+FROM debian:10.5-slim
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
